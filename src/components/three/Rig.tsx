@@ -52,6 +52,7 @@ export function Rig() {
 
     nextPosition.x += sceneSignal.pointerX * 0.34;
     nextPosition.y += sceneSignal.pointerY * 0.2;
+    nextPosition.z -= sceneSignal.contactProgress * 0.45;
     nextTarget.x += sceneSignal.pointerX * 0.1;
     nextTarget.y += sceneSignal.pointerY * 0.08;
 

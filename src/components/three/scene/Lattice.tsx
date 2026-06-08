@@ -22,7 +22,8 @@ export function Lattice({ tier }: LatticeProps) {
     easing.damp(
       material.uniforms.uIntensity,
       "value",
-      tier.level === "low" ? 0.32 : 0.5 + sceneSignal.sectionIndex * 0.024,
+      (tier.level === "low" ? 0.32 : 0.5 + sceneSignal.sectionIndex * 0.024) *
+        (1 - sceneSignal.contactProgress * 0.6),
       0.24,
       delta,
     );

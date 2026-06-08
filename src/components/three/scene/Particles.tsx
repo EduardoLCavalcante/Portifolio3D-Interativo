@@ -43,7 +43,9 @@ export function Particles({ tier }: ParticlesProps) {
 
     pointsRef.current.rotation.y = clock.elapsedTime * 0.018 + sceneSignal.pointerX * 0.06;
     pointsRef.current.rotation.x = sceneSignal.pointerY * 0.04;
-    material.opacity = tier.level === "low" ? 0 : 0.1 + Math.abs(sceneSignal.velocity) * 0.06;
+    material.opacity =
+      (tier.level === "low" ? 0 : 0.1 + Math.abs(sceneSignal.velocity) * 0.06) *
+      (1 - sceneSignal.contactProgress * 0.72);
   });
 
   if (!tier.particles) return null;

@@ -51,6 +51,8 @@ export function Phone({ tier }: PhoneProps) {
       new THREE.MeshBasicMaterial({
         map: phoneUI.texture,
         toneMapped: false,
+        transparent: true,
+        opacity: 1,
       }),
     [phoneUI.texture],
   );
@@ -118,9 +120,12 @@ export function Phone({ tier }: PhoneProps) {
     const sectionRotation = sectionRotations[sceneSignal.sectionIndex] ?? sectionRotations[0];
     const velocityBoost = Math.min(0.32, Math.abs(sceneSignal.velocity) * 0.18);
     const textureFps = tier.level === "high" && !tier.mobile ? 18 : 12;
+    const cp = sceneSignal.contactProgress;
+    const contactZ = cp * (tier.mobile ? 0.8 : 1.7);
+    const contactScale = cp * (tier.mobile ? 0.42 : 0.9);
 
     textureAccumulator.current += delta;
-    if (textureAccumulator.current >= 1 / textureFps) {
+    if (textureAccumulator.current >= 1 / textureFps && (screenMaterial.opacity > 0.03 || cp < 0.98)) {
       phoneUI.draw({
         scroll: sceneSignal.scroll,
         sectionIndex: sceneSignal.sectionIndex,
@@ -134,22 +139,24 @@ export function Phone({ tier }: PhoneProps) {
     easing.damp(
       rimMaterial.uniforms.uIntensity,
       "value",
-      0.42 + velocityBoost + sceneSignal.sectionProgress * 0.08,
+      0.42 + velocityBoost + sceneSignal.sectionProgress * 0.08 + cp * 0.5,
       0.22,
       delta,
     );
+    easing.damp(screenMaterial, "opacity", 1 - cp, 0.18, delta);
 
     if (groupRef.current) {
       const heroX = tier.mobile ? 0.72 : 1.05;
       const sectionX = tier.mobile ? 0.16 : 0.24;
       const baseScale = tier.mobile ? 1.03 : 1.1;
+      const xTarget = (sceneSignal.sectionIndex === 0 ? heroX : sectionX) * (1 - cp);
 
       easing.damp3(
         groupRef.current.position,
         [
-          sceneSignal.sectionIndex === 0 ? heroX : sectionX,
+          xTarget,
           -0.02 + Math.sin(sceneSignal.scroll * Math.PI) * 0.16,
-          0,
+          contactZ,
         ],
         0.28,
         delta,
@@ -167,9 +174,9 @@ export function Phone({ tier }: PhoneProps) {
       easing.damp3(
         groupRef.current.scale,
         [
-          baseScale + sceneSignal.sectionProgress * 0.035,
-          baseScale + sceneSignal.sectionIndex * 0.008,
-          baseScale,
+          baseScale + sceneSignal.sectionProgress * 0.035 + contactScale,
+          baseScale + sceneSignal.sectionIndex * 0.008 + contactScale,
+          baseScale + contactScale,
         ],
         0.3,
         delta,

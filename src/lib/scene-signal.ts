@@ -14,6 +14,7 @@ export type SceneSignal = {
   scrollY: number;
   sectionIndex: number;
   sectionProgress: number;
+  contactProgress: number;
   pointerX: number;
   pointerY: number;
   velocity: number;
@@ -36,6 +37,7 @@ export const sceneSignal: SceneSignal = {
   scrollY: 0,
   sectionIndex: 0,
   sectionProgress: 0,
+  contactProgress: 0,
   pointerX: 0,
   pointerY: 0,
   velocity: 0,

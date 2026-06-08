@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { prefersReducedMotion } from "@/lib/client-capabilities";
 import { clamp01, sceneSections, sceneSignal } from "@/lib/scene-signal";
 
 type SectionMetric = {
@@ -29,6 +30,7 @@ export function ScrollBridge() {
     let lastTime = performance.now();
     let metrics = measureSections();
     const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
+    const reducedMotion = prefersReducedMotion();
 
     const update = () => {
       const now = performance.now();
@@ -53,6 +55,20 @@ export function ScrollBridge() {
       sceneSignal.velocity += (rawVelocity - sceneSignal.velocity) * 0.12;
       sceneSignal.sectionIndex = sectionIndex;
       sceneSignal.sectionProgress = clamp01((viewportAnchor - active.top) / active.height);
+
+      const contact = metrics[metrics.length - 1];
+      if (contact) {
+        const start = contact.top - window.innerHeight * 0.95;
+        const end = contact.top - window.innerHeight * 0.15;
+        sceneSignal.contactProgress = reducedMotion
+          ? 1
+          : clamp01((scrollY - start) / Math.max(1, end - start));
+      }
+
+      document.documentElement.style.setProperty(
+        "--contact-progress",
+        reducedMotion ? "1" : sceneSignal.contactProgress.toFixed(4),
+      );
 
       if (!hasFinePointer) {
         sceneSignal.pointerX = Math.sin(sceneSignal.scroll * Math.PI * 2) * 0.12;

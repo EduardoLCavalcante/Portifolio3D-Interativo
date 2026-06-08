@@ -9,6 +9,7 @@ import { SectionAwareness } from "@/components/motion/SectionAwareness";
 import { Cursor } from "@/components/motion/Cursor";
 import { SceneRoot } from "@/components/three/SceneRoot";
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
+import { Preloader } from "@/components/ui/Preloader";
 import { siteConfig } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -63,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body>
+        <Preloader />
         <SmoothScrollProvider>
           <SceneRoot />
           <ScrollProgress />
@@ -71,8 +73,10 @@ export default function RootLayout({
           <NoiseOverlay />
           <Cursor />
           <Navbar />
-          {children}
-          <Footer />
+          <div className="lg:pl-[var(--sidebar-width)]">
+            {children}
+            <Footer />
+          </div>
         </SmoothScrollProvider>
       </body>
     </html>

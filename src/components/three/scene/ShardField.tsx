@@ -90,7 +90,8 @@ export function ShardField({ tier }: ShardFieldProps) {
     material.uniforms.uTime.value = time;
     material.uniforms.uScroll.value = sceneSignal.scroll;
     material.uniforms.uSection.value = section;
-    material.uniforms.uOpacity.value = tier.level === "low" ? 0.4 : 0.55;
+    material.uniforms.uOpacity.value =
+      (tier.level === "low" ? 0.4 : 0.55) * (1 - sceneSignal.contactProgress * 0.72);
   });
 
   return (
