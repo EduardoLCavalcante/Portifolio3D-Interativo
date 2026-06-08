@@ -6,7 +6,7 @@ export const siteConfig = {
   githubUsername: "EduardoLCavalcante",
   githubBaseUrl: "https://github.com/EduardoLCavalcante",
   social: {
-    github: "https://github.com/EduardoLCavalcante",
+    github: "https://github.com/EduardoLCavalcante ",
     linkedin: "https://www.linkedin.com/in/joseecavalcante/",
     currentPortfolio: "https://eduardocavalcante.online",
   },
