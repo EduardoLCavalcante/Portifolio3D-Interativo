@@ -128,11 +128,11 @@ export function MobileScrollNarrative() {
     <section
       ref={sectionRef}
       className="relative border-y border-white/[0.08] bg-carbon/72 md:hidden"
-      // Height drives the scroll distance: N states × 82dvh each
-      style={{ height: `${N * 82}dvh` }}
+      // Height drives the scroll distance: N states x 82svh each
+      style={{ height: `${N * 82}svh` }}
     >
       {/* ── Sticky viewport ─────────────────────────── */}
-      <div className="sticky top-0 h-[100dvh] overflow-hidden">
+      <div className="sticky top-0 h-[100svh] overflow-hidden">
 
         {/* 3D nucleus — full-screen */}
         <div className="webgl-fallback-only absolute inset-0 z-0" aria-hidden="true">

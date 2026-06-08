@@ -50,7 +50,7 @@ export function Hero3D() {
     <section
       ref={heroRef}
       id="surface"
-      className="section-transition relative isolate min-h-[100dvh] overflow-hidden pt-20"
+      className="section-transition relative isolate min-h-[100svh] overflow-hidden pt-20"
       onPointerMove={handlePointerMove}
     >
       <motion.div
@@ -65,7 +65,7 @@ export function Hero3D() {
       <div className="absolute bottom-0 left-0 right-0 -z-10 h-px bg-white/[0.12]" />
       <div className="hero-copy-scrim" aria-hidden="true" />
 
-      <div className="container-shell grid min-h-[calc(100dvh-5rem)] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="container-shell grid min-h-[calc(100svh-5rem)] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="relative z-20 max-w-4xl pb-8 lg:pl-24 xl:pl-28">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
