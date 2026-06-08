@@ -8,7 +8,7 @@ export async function ProjectsSection() {
   return (
     <section
       id="evidence"
-      className="section-transition section-y border-y border-white/[0.08] bg-[#090a0b]"
+      className="section-transition section-y border-y border-white/[0.08] bg-carbon/78 backdrop-blur-[1px]"
     >
       <div className="container-shell">
         <ProjectsShowcase projects={result.repos} source={result.source} error={result.error} />

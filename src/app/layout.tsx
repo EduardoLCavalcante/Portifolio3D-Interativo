@@ -6,6 +6,8 @@ import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { CreativeSpotlight } from "@/components/motion/CreativeSpotlight";
 import { SectionAwareness } from "@/components/motion/SectionAwareness";
+import { Cursor } from "@/components/motion/Cursor";
+import { SceneRoot } from "@/components/three/SceneRoot";
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 import { siteConfig } from "@/lib/constants";
 
@@ -62,10 +64,12 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <body>
         <SmoothScrollProvider>
+          <SceneRoot />
           <ScrollProgress />
           <CreativeSpotlight />
           <SectionAwareness />
           <NoiseOverlay />
+          <Cursor />
           <Navbar />
           {children}
           <Footer />

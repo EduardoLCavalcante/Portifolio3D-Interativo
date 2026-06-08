@@ -1,15 +1,14 @@
 export const siteConfig = {
   name: "Eduardo Cavalcante",
   role: "Desenvolvedor Front-end",
-  domain: "eduardocavalcante.site",
-  email: "hello@eduardocavalcante.site",
+  domain: "eduardocavalcante.online",
+  email: "eduardocavalcante131@gmail.com",
   githubUsername: "EduardoLCavalcante",
   githubBaseUrl: "https://github.com/EduardoLCavalcante",
-  splineSceneUrl: process.env.NEXT_PUBLIC_SPLINE_SCENE_URL ?? "",
   social: {
     github: "https://github.com/EduardoLCavalcante",
-    linkedin: "https://www.linkedin.com/in/eduardocavalcante",
-    currentPortfolio: "https://eduardocavalcante.site",
+    linkedin: "https://www.linkedin.com/in/joseecavalcante/",
+    currentPortfolio: "https://eduardocavalcante.online",
   },
 };
 

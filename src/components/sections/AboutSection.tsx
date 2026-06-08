@@ -2,7 +2,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="section-transition section-y border-y border-white/[0.08] bg-[#090a0b]"
+      className="section-transition section-y border-y border-white/[0.08] bg-carbon/78 backdrop-blur-[1px]"
     >
       <div className="container-shell">
         <div className="grid gap-10 lg:grid-cols-[0.28fr_0.72fr]">

@@ -87,7 +87,7 @@ export function DesktopScrollExperience() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate hidden min-h-[100dvh] overflow-hidden border-y border-white/[0.08] bg-[#090909] md:block"
+      className="relative isolate hidden min-h-[100dvh] overflow-hidden border-y border-white/[0.08] bg-carbon/72 backdrop-blur-[1px] md:block"
     >
       <div className="absolute inset-y-0 left-[12%] w-px bg-white/[0.07]" />
       <div className="absolute inset-y-0 right-[34%] hidden w-px bg-white/[0.07] lg:block" />
@@ -117,10 +117,10 @@ export function DesktopScrollExperience() {
         <div className="hero-visual-shell stage-depth relative flex min-h-[560px] items-center justify-center">
           <div
             ref={visualRef}
-            className="relative h-[560px] w-[min(82vw,620px)] shadow-[0_50px_150px_rgba(0,0,0,0.5)]"
+            className="narrative-webgl-frame relative h-[560px] w-[min(82vw,620px)]"
             style={{ transformStyle: "preserve-3d" }}
           >
-            <div className="narrative-grid technical-map absolute inset-x-8 bottom-12 top-10 opacity-25" />
+            <div className="narrative-grid technical-map absolute inset-x-8 bottom-12 top-10 opacity-30" />
             <div className="narrative-pulse absolute bottom-0 right-[28%] top-0 w-px origin-center scale-y-75 bg-cadmium/80 opacity-35 shadow-[0_0_34px_rgba(255,59,48,0.34)]" />
             <div className="narrative-layer absolute left-8 right-24 top-20 h-28 border border-white/14 bg-white/[0.055]" />
             <div className="narrative-layer absolute left-24 right-8 top-60 h-20 border border-white/12 bg-white/[0.04]" />

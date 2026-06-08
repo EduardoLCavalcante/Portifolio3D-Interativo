@@ -1,11 +1,11 @@
 import { DesktopScrollExperience } from "@/components/sections/DesktopScrollExperience";
-import { MobileScrollExperience } from "@/components/sections/MobileScrollExperience";
+import { MobileScrollNarrative } from "@/components/sections/MobileScrollNarrative";
 
 export function ScrollNarrative() {
   return (
     <div id="behavior" className="section-transition">
       <DesktopScrollExperience />
-      <MobileScrollExperience />
+      <MobileScrollNarrative />
     </div>
   );
 }

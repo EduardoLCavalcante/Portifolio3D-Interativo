@@ -47,7 +47,16 @@ export function SectionAwareness() {
 
     revealElements.forEach((element, index) => {
       element.style.setProperty("--reveal-delay", `${Math.min(index * 22, 180)}ms`);
-      revealObserver.observe(element);
+
+      // Elements already visible in viewport on load (e.g. above-the-fold hero content)
+      // won't re-enter the viewport so the IntersectionObserver never fires for them.
+      // Reveal them immediately via getBoundingClientRect so they're never stuck hidden.
+      const rect = element.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        element.dataset.visible = "true";
+      } else {
+        revealObserver.observe(element);
+      }
     });
 
     return () => revealObserver.disconnect();

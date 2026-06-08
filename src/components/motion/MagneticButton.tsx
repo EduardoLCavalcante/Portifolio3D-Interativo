@@ -60,7 +60,12 @@ export function MagneticButton({
       style={{ x: springX, y: springY }}
     >
       <span className="absolute inset-0 translate-y-full bg-cadmium transition-transform duration-500 ease-out group-hover:translate-y-0" />
-      <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
+      <span
+        className={cn(
+          "relative z-10 transition-colors duration-300 group-hover:text-white",
+          variant === "primary" ? "text-carbon" : "text-frost",
+        )}
+      >
         {children}
       </span>
     </motion.a>

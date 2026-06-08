@@ -52,6 +52,13 @@ export function ProjectPanel({ project, featured }: ProjectPanelProps) {
       onPointerMove={handlePointerMove}
       onPointerLeave={resetMagnet}
       style={{ x: springX, y: springY }}
+      initial={reducedMotion ? undefined : { opacity: 0 }}
+      whileInView={reducedMotion ? undefined : { opacity: 1 }}
+      viewport={reducedMotion ? undefined : { once: true, margin: "-10%" }}
+      transition={
+        reducedMotion ? undefined : { duration: 0.48, ease: [0.22, 1, 0.36, 1] }
+      }
+      whileTap={reducedMotion ? undefined : { scale: 0.988 }}
     >
       <div
         className={cn(
