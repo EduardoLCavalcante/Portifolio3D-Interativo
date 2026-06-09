@@ -87,12 +87,12 @@ export function DesktopScrollExperience() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate hidden min-h-[100dvh] overflow-hidden border-y border-white/[0.08] bg-carbon/72 backdrop-blur-[1px] md:block"
+      className="relative isolate hidden min-h-[100svh] overflow-hidden border-y border-white/[0.08] bg-carbon/72 backdrop-blur-[1px] md:block"
     >
       <div className="absolute inset-y-0 left-[12%] w-px bg-white/[0.07]" />
       <div className="absolute inset-y-0 right-[34%] hidden w-px bg-white/[0.07] lg:block" />
 
-      <div className="container-shell grid min-h-[100dvh] items-center gap-12 py-24 lg:grid-cols-[0.82fr_1.18fr]">
+      <div className="container-shell grid min-h-[100svh] items-center gap-12 py-24 lg:grid-cols-[0.82fr_1.18fr]">
         <div className="relative z-10">
           <p className="font-mono text-sm text-cadmium" data-reveal="soft">
             01 / comportamento

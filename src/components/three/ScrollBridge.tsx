@@ -9,16 +9,16 @@ type SectionMetric = {
   height: number;
 };
 
-function measureSections(): SectionMetric[] {
+function measureSections(viewportHeight: number): SectionMetric[] {
   return sceneSections.map((id) => {
     const element = document.getElementById(id);
     if (!element) {
-      return { top: 0, height: window.innerHeight };
+      return { top: 0, height: viewportHeight };
     }
 
     return {
       top: element.offsetTop,
-      height: Math.max(element.offsetHeight, window.innerHeight),
+      height: Math.max(element.offsetHeight, viewportHeight),
     };
   });
 }
@@ -28,17 +28,19 @@ export function ScrollBridge() {
     let frame = 0;
     let lastY = window.scrollY;
     let lastTime = performance.now();
-    let metrics = measureSections();
+    let viewportWidth = window.innerWidth;
+    let viewportHeight = window.innerHeight;
+    let metrics = measureSections(viewportHeight);
     const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
     const reducedMotion = prefersReducedMotion();
 
     const update = () => {
       const now = performance.now();
       const scrollY = window.scrollY;
-      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - viewportHeight);
       const deltaTime = Math.max(16, now - lastTime);
       const rawVelocity = (scrollY - lastY) / deltaTime;
-      const viewportAnchor = scrollY + window.innerHeight * 0.48;
+      const viewportAnchor = scrollY + viewportHeight * 0.48;
 
       let sectionIndex = 0;
       for (let index = 0; index < metrics.length; index += 1) {
@@ -58,8 +60,8 @@ export function ScrollBridge() {
 
       const contact = metrics[metrics.length - 1];
       if (contact) {
-        const start = contact.top - window.innerHeight * 0.95;
-        const end = contact.top - window.innerHeight * 0.15;
+        const start = contact.top - viewportHeight * 0.95;
+        const end = contact.top - viewportHeight * 0.15;
         sceneSignal.contactProgress = reducedMotion
           ? 1
           : clamp01((scrollY - start) / Math.max(1, end - start));
@@ -90,11 +92,22 @@ export function ScrollBridge() {
       if (!hasFinePointer) return;
 
       sceneSignal.pointerX = event.clientX / window.innerWidth - 0.5;
-      sceneSignal.pointerY = event.clientY / window.innerHeight - 0.5;
+      sceneSignal.pointerY = event.clientY / viewportHeight - 0.5;
     };
 
     const handleResize = () => {
-      metrics = measureSections();
+      const nextWidth = window.innerWidth;
+      const nextHeight = window.innerHeight;
+      const widthChanged = nextWidth !== viewportWidth;
+      const heightDelta = Math.abs(nextHeight - viewportHeight);
+
+      if (!widthChanged && heightDelta < 140) {
+        return;
+      }
+
+      viewportWidth = nextWidth;
+      viewportHeight = nextHeight;
+      metrics = measureSections(viewportHeight);
       requestUpdate();
     };
 
@@ -105,7 +118,7 @@ export function ScrollBridge() {
     const resizeObserver =
       "ResizeObserver" in window
         ? new ResizeObserver(() => {
-            metrics = measureSections();
+            metrics = measureSections(viewportHeight);
             requestUpdate();
           })
         : undefined;

@@ -45,7 +45,7 @@ html.preloader-active body {
 body {
   position: relative;
   isolation: isolate;
-  min-height: 100dvh;
+  min-height: 100svh;
   overflow-x: clip;
   background:
     linear-gradient(90deg, rgba(244, 246, 248, 0.045) 1px, transparent 1px) 50% 0 / 25vw 100%,
@@ -381,7 +381,10 @@ html[data-webgl="ready"] .fallback-noise-overlay {
 .webgl-scene-root {
   pointer-events: none;
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100lvh;
   z-index: -10;
   overflow: hidden;
   contain: layout paint size;
@@ -404,7 +407,7 @@ html[data-webgl="ready"] .fallback-noise-overlay {
 
 .scene-poster .hero-visual-shell {
   width: 100%;
-  min-height: 100dvh;
+  min-height: 100lvh;
 }
 
 .scene-poster--hidden {
