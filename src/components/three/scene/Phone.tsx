@@ -24,6 +24,8 @@ const sectionRotations: [number, number, number][] = [
   [0, 0.12, 0],
 ];
 
+const CONTACT_LANDSCAPE_ROLL = THREE.MathUtils.degToRad(90);
+
 function getTextureSize(tier: SceneQuality) {
   if (tier.level === "high" && !tier.mobile) {
     return { width: 540, height: 1170 };
@@ -121,8 +123,9 @@ export function Phone({ tier }: PhoneProps) {
     const velocityBoost = Math.min(0.32, Math.abs(sceneSignal.velocity) * 0.18);
     const textureFps = tier.level === "high" && !tier.mobile ? 18 : 12;
     const cp = sceneSignal.contactProgress;
-    const contactZ = cp * (tier.mobile ? 0.8 : 1.7);
-    const contactScale = cp * (tier.mobile ? 0.42 : 0.9);
+    const isDesktop = !tier.mobile;
+    const contactZ = cp * (tier.mobile ? 0.8 : 2.3);
+    const contactScale = cp * (tier.mobile ? 0.42 : 0.32);
 
     textureAccumulator.current += delta;
     if (textureAccumulator.current >= 1 / textureFps && (screenMaterial.opacity > 0.03 || cp < 0.98)) {
@@ -151,11 +154,13 @@ export function Phone({ tier }: PhoneProps) {
       const baseScale = tier.mobile ? 1.03 : 1.1;
       const xTarget = (sceneSignal.sectionIndex === 0 ? heroX : sectionX) * (1 - cp);
 
+      const yBase = -0.02 + Math.sin(sceneSignal.scroll * Math.PI) * 0.16;
+      const settle = isDesktop ? 1 - cp * 0.85 : 1;
       easing.damp3(
         groupRef.current.position,
         [
-          xTarget,
-          -0.02 + Math.sin(sceneSignal.scroll * Math.PI) * 0.16,
+          xTarget + (isDesktop ? cp * 0.05 : 0),
+          yBase * (isDesktop ? 1 - cp : 1) + (isDesktop ? cp * 0.05 : 0),
           contactZ,
         ],
         0.28,
@@ -164,9 +169,9 @@ export function Phone({ tier }: PhoneProps) {
       easing.dampE(
         groupRef.current.rotation,
         [
-          sectionRotation[0] + sceneSignal.pointerY * 0.22,
-          sectionRotation[1] + sceneSignal.pointerX * 0.32,
-          sectionRotation[2],
+          sectionRotation[0] * settle + sceneSignal.pointerY * 0.22 * settle,
+          sectionRotation[1] * settle + sceneSignal.pointerX * 0.32 * settle,
+          sectionRotation[2] - (isDesktop ? cp * CONTACT_LANDSCAPE_ROLL : 0),
         ],
         0.24,
         delta,
