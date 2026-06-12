@@ -32,7 +32,7 @@ export function DesktopScrollExperience() {
         const mediaContext = gsap.matchMedia();
         media = mediaContext;
 
-        mediaContext.add("(min-width: 768px)", () => {
+        mediaContext.add("(min-width: 1024px)", () => {
           ctx = gsap.context(() => {
             const panels = gsap.utils.toArray<HTMLElement>(".narrative-copy");
             const layers = gsap.utils.toArray<HTMLElement>(".narrative-layer");
@@ -87,7 +87,7 @@ export function DesktopScrollExperience() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate hidden min-h-[100svh] overflow-hidden border-y border-white/[0.08] bg-carbon/72 backdrop-blur-[1px] md:block"
+      className="relative isolate hidden min-h-[100svh] overflow-hidden border-y border-white/[0.08] bg-carbon/72 backdrop-blur-[1px] lg:block"
     >
       <div className="absolute inset-y-0 left-[12%] w-px bg-white/[0.07]" />
       <div className="absolute inset-y-0 right-[34%] hidden w-px bg-white/[0.07] lg:block" />
@@ -105,7 +105,7 @@ export function DesktopScrollExperience() {
               }`}
                 key={step.title}
               >
-                <h2 className="text-balance text-5xl font-semibold leading-[0.95] text-frost md:text-7xl">
+                <h2 className="text-balance text-5xl font-semibold leading-[0.95] text-frost xl:text-7xl">
                   {step.title}
                 </h2>
                 <p className="mt-7 text-lg leading-8 text-ash">{step.copy}</p>
@@ -114,19 +114,19 @@ export function DesktopScrollExperience() {
           </div>
         </div>
 
-        <div className="hero-visual-shell stage-depth relative flex min-h-[560px] items-center justify-center">
+        <div className="hero-visual-shell stage-depth relative flex min-h-[clamp(380px,62svh,560px)] items-center justify-center">
           <div
             ref={visualRef}
-            className="narrative-webgl-frame relative h-[560px] w-[min(82vw,620px)]"
+            className="narrative-webgl-frame relative h-[clamp(380px,62svh,560px)] w-[min(82vw,620px)]"
             style={{ transformStyle: "preserve-3d" }}
           >
             <div className="narrative-grid technical-map absolute inset-x-8 bottom-12 top-10 opacity-30" />
             <div className="narrative-pulse absolute bottom-0 right-[28%] top-0 w-px origin-center scale-y-75 bg-cadmium/80 opacity-35 shadow-[0_0_34px_rgba(255,59,48,0.34)]" />
-            <div className="narrative-layer absolute left-8 right-24 top-20 h-28 border border-white/14 bg-white/[0.055]" />
-            <div className="narrative-layer absolute left-24 right-8 top-60 h-20 border border-white/12 bg-white/[0.04]" />
-            <div className="narrative-layer absolute bottom-20 left-0 right-36 h-32 border border-white/12 bg-white/[0.05]" />
-            <div className="absolute -right-2 top-24 h-32 w-10 border border-white/10 bg-white/[0.032]" />
-            <div className="absolute -left-8 bottom-28 h-40 w-12 border border-cadmium/24 bg-cadmium/10" />
+            <div className="narrative-layer absolute left-8 right-24 top-[14%] h-[20%] border border-white/14 bg-white/[0.055]" />
+            <div className="narrative-layer absolute left-24 right-8 top-[43%] h-[14%] border border-white/12 bg-white/[0.04]" />
+            <div className="narrative-layer absolute bottom-[14%] left-0 right-36 h-[23%] border border-white/12 bg-white/[0.05]" />
+            <div className="absolute -right-2 top-[17%] h-[23%] w-10 border border-white/10 bg-white/[0.032]" />
+            <div className="absolute -left-8 bottom-[20%] h-[28%] w-12 border border-cadmium/24 bg-cadmium/10" />
           </div>
         </div>
       </div>

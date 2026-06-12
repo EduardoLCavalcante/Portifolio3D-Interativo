@@ -94,7 +94,7 @@ export function MobileScrollNarrative() {
   // ── Reduced-motion fallback: static stacked layout ───────
   if (reducedMotion) {
     return (
-      <section className="relative border-y border-white/[0.08] bg-[#090909] md:hidden">
+      <section className="relative border-y border-white/[0.08] bg-[#090909] lg:hidden">
         <div className="container-shell py-16">
           <p className="font-mono text-sm text-cadmium">01 / comportamento</p>
           <h2 className="mt-7 text-balance text-4xl font-semibold leading-[0.98] text-frost">
@@ -127,7 +127,7 @@ export function MobileScrollNarrative() {
   return (
     <section
       ref={sectionRef}
-      className="relative border-y border-white/[0.08] bg-carbon/72 md:hidden"
+      className="relative border-y border-white/[0.08] bg-carbon/72 lg:hidden"
       // Height drives the scroll distance: N states x 82svh each
       style={{ height: `${N * 82}svh` }}
     >
@@ -186,10 +186,10 @@ export function MobileScrollNarrative() {
               aria-hidden={i !== 0}
             >
               <p className="font-mono text-xs text-cadmium">{state.counter}</p>
-              <h3 className="mt-3 text-balance text-3xl font-semibold leading-[1.02] text-frost">
+              <h3 className="mt-3 max-w-2xl text-balance text-3xl font-semibold leading-[1.02] text-frost md:text-4xl">
                 {state.title}
               </h3>
-              <p className="mt-3 text-base leading-7 text-ash/90">{state.copy}</p>
+              <p className="mt-3 max-w-xl text-base leading-7 text-ash/90">{state.copy}</p>
               {isLast && (
                 <a
                   className="mt-6 inline-flex h-11 items-center justify-center border border-white/20 px-5 text-sm text-frost transition duration-300 active:translate-y-px"

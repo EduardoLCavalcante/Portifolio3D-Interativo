@@ -21,14 +21,14 @@ export function EcosystemSection() {
         </div>
 
         <div
-          className="mouse-reactive relative min-h-[680px] overflow-hidden border-y border-white/[0.09] py-6 md:min-h-[760px]"
+          className="mouse-reactive relative min-h-[680px] overflow-hidden border-y border-white/[0.09] py-6 lg:min-h-[760px]"
           data-reveal="soft"
         >
           <div className="technical-map absolute inset-0 opacity-[0.38]" />
           <div className="absolute left-[38%] top-0 h-full w-px bg-cadmium/55" />
           <div className="absolute left-0 right-0 top-[58%] h-px bg-white/[0.14]" />
 
-          <div className="absolute left-[31%] top-[43%] hidden -translate-x-1/2 -translate-y-1/2 md:block">
+          <div className="absolute left-[31%] top-[43%] hidden -translate-x-1/2 -translate-y-1/2 lg:block">
             <p className="max-w-[10rem] text-4xl font-semibold leading-[0.9] text-frost">
               Superfície de interface
             </p>
@@ -39,7 +39,7 @@ export function EcosystemSection() {
             <div
               key={node.label}
               className={cn(
-                "absolute z-20 hidden max-w-[13rem] -translate-x-1/2 -translate-y-1/2 border-l border-white/16 bg-carbon/70 py-3 pl-4 pr-2 backdrop-blur md:block",
+                "absolute z-20 hidden max-w-[13rem] -translate-x-1/2 -translate-y-1/2 border-l border-white/16 bg-carbon/70 py-3 pl-4 pr-2 backdrop-blur lg:block",
                 node.size === "lg" && "w-52",
                 node.size === "md" && "w-44",
                 node.size === "sm" && "w-36",
@@ -54,7 +54,7 @@ export function EcosystemSection() {
             </div>
           ))}
 
-          <div className="relative z-20 grid gap-3 md:hidden">
+          <div className="relative z-20 grid gap-3 lg:hidden">
             {ecosystemNodes.map((node) => (
               <div
                 key={node.label}

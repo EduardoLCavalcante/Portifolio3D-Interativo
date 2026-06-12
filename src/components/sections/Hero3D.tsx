@@ -110,7 +110,7 @@ export function Hero3D() {
         </div>
 
         <motion.div
-          className="hero-webgl-foreground relative -mr-[12vw] min-h-[340px] sm:min-h-[430px] md:-mr-[22vw] md:min-h-[520px] lg:-ml-40 lg:min-h-[760px]"
+          className="hero-webgl-foreground relative -mr-[12vw] min-h-[340px] sm:min-h-[430px] md:min-h-[520px] lg:-mr-[22vw] lg:-ml-40 lg:min-h-[760px]"
           style={{
             x: mobileMotion ? 0 : visualX,
             y: mobileMotion ? mobileParallaxY : visualY,
