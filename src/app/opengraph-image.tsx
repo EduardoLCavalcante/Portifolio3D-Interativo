@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/lib/constants";
 
-export const alt = `${siteConfig.name} — Desenvolvedor Front-end`;
+export const alt = `${siteConfig.name} | Creative Front-end Engineer`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -33,7 +33,7 @@ export default function OGImage() {
           }}
         />
 
-        {/* Cadmium vertical accent — right side */}
+        {/* Cadmium vertical accent - right side */}
         <div
           style={{
             position: "absolute",
@@ -67,7 +67,7 @@ export default function OGImage() {
             }}
           />
           <span style={{ color: "rgba(184,190,199,0.65)", fontSize: 16, letterSpacing: 1 }}>
-            Desenvolvedor Front-end
+            Creative Front-end Engineer
           </span>
         </div>
 

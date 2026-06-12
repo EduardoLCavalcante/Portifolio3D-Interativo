@@ -11,6 +11,8 @@ type ProjectsShowcaseProps = {
   error?: string;
 };
 
+const allLanguagesLabel = "Todos";
+
 function formatProjectName(name: string) {
   return name.replace(/[-_]/g, " ");
 }
@@ -20,14 +22,14 @@ function getLanguages(projects: GithubRepo[]) {
     projects.map((project) => project.language).filter((language): language is string => Boolean(language)),
   );
 
-  return ["All", ...Array.from(languages)];
+  return [allLanguagesLabel, ...Array.from(languages)];
 }
 
 export function ProjectsShowcase({ projects, source, error }: ProjectsShowcaseProps) {
-  const [selectedLanguage, setSelectedLanguage] = useState("All");
+  const [selectedLanguage, setSelectedLanguage] = useState(allLanguagesLabel);
   const languages = useMemo(() => getLanguages(projects), [projects]);
   const filteredProjects = useMemo(() => {
-    if (selectedLanguage === "All") return projects;
+    if (selectedLanguage === allLanguagesLabel) return projects;
     return projects.filter((project) => project.language === selectedLanguage);
   }, [projects, selectedLanguage]);
 
@@ -49,17 +51,17 @@ export function ProjectsShowcase({ projects, source, error }: ProjectsShowcasePr
     >
       <div className="max-w-4xl">
         <p className="font-mono text-sm text-cadmium" data-reveal="soft">
-          03 / projetos
+          Projetos públicos
         </p>
         <h2
           className="mt-7 text-balance text-5xl font-semibold leading-[0.95] text-frost md:text-7xl"
           data-reveal="mask"
         >
-          Repositórios públicos como evidência de interface.
+          Provas públicas de front-end, produto e execução.
         </h2>
         <p className="mt-8 max-w-2xl text-lg leading-8 text-ash" data-reveal="soft">
-          Extraídos do GitHub e dispostos como sistema: links ao vivo, sinais de linguagem,
-          ritmo de atualização e contexto de repositório.
+          Os repositórios vêm do GitHub EduardoLCavalcante. Cada card destaca escopo,
+          stack e o que o projeto demonstra.
         </p>
       </div>
 
@@ -87,9 +89,9 @@ export function ProjectsShowcase({ projects, source, error }: ProjectsShowcasePr
 
         <div className="font-mono text-xs text-ash/65">
           {source === "fallback" ? (
-            <span title={error}>Fallback local ativo</span>
+            <span title={error}>Backup local do GitHub</span>
           ) : (
-            <span>GitHub API / EduardoLCavalcante</span>
+            <span>GitHub público / EduardoLCavalcante</span>
           )}
         </div>
       </div>
@@ -100,7 +102,7 @@ export function ProjectsShowcase({ projects, source, error }: ProjectsShowcasePr
         </div>
       ) : (
         <p className="mt-14 border-y border-white/[0.1] py-10 text-ash">
-          Nenhum repositório público encontrado para essa linguagem.
+          Nenhum projeto público nessa linguagem.
         </p>
       )}
 
@@ -130,7 +132,7 @@ export function ProjectsShowcase({ projects, source, error }: ProjectsShowcasePr
                 <span className="project-row__title text-xl font-semibold leading-none text-frost">
                   {formatProjectName(project.name)}
                 </span>
-                <span className="text-sm text-ash/70">{project.language ?? "Code"}</span>
+                <span className="text-sm text-ash/70">{project.language ?? "Código"}</span>
                 <span className="text-sm text-ash/70">{project.updatedLabel}</span>
               </a>
             ))}

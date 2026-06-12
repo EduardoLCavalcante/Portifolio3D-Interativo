@@ -75,7 +75,7 @@ export function Hero3D() {
           >
             <span className="h-10 w-px rotate-12 bg-cadmium" />
             <span className="font-mono text-xs text-ash/70">
-              Desenvolvedor front-end / sistemas responsivos
+              Front-end Engineer / React, Next.js, TypeScript
             </span>
           </motion.div>
 
@@ -92,8 +92,8 @@ export function Hero3D() {
             className="mt-7 max-w-[21rem] text-base leading-7 text-ash sm:max-w-[31rem] md:text-xl md:leading-8"
             data-reveal="soft"
           >
-            Interfaces responsivas construídas com React, Next.js, TypeScript, motion
-            e acabamento de produto.
+            Crio interfaces premium, responsivas e motion-driven para produtos reais,
+            landing pages e dashboards em React/Next.js.
           </motion.p>
 
           <motion.div
@@ -102,7 +102,7 @@ export function Hero3D() {
             transition={{ duration: 0.7, delay: 0.72, ease: [0.22, 1, 0.36, 1] }}
             className="mt-9 flex flex-col items-start gap-3 sm:flex-row"
           >
-            <MagneticButton href={`mailto:${siteConfig.email}`}>Fale comigo</MagneticButton>
+            <MagneticButton href={`mailto:${siteConfig.email}`}>Discutir projeto</MagneticButton>
             <MagneticButton href="#evidence" variant="secondary">
               Ver projetos
             </MagneticButton>

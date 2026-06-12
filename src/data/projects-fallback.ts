@@ -2,35 +2,52 @@ import type { GithubRepo } from "@/lib/github";
 
 export const projectsFallback: GithubRepo[] = [
   {
-    id: 1,
-    name: "loja-sorvetes",
-    description: "E-commerce para a Dlice Sorvetes: catálogo de produtos, experiência de marca e checkout responsivo.",
+    id: 1261698261,
+    name: "Portifolio3D-Interativo",
+    description:
+      "Portfólio 3D em Next.js, TypeScript, Three.js, GSAP e Motion. Prova domínio de UI premium, scroll narrativo, WebGL e responsividade.",
     language: "TypeScript",
     stars: 0,
-    updatedAt: "2026-05-25T00:10:13Z",
-    updatedLabel: "25 de mai. de 2026",
+    updatedAt: "2026-06-12T14:36:28Z",
+    updatedLabel: "12 de jun. de 2026",
+    createdAt: "2026-06-07T03:20:33Z",
+    url: "https://github.com/EduardoLCavalcante/Portifolio3D-Interativo",
+    homepage: "https://portifolio-3d-animation.vercel.app",
+    source: "fallback",
+  },
+  {
+    id: 1017707036,
+    name: "dlicesorvetes",
+    description:
+      "E-commerce responsivo para marca de sorvetes em Next.js, com catálogo, carrinho, checkout e Supabase. Prova execução comercial com fluxo real.",
+    language: "TypeScript",
+    stars: 0,
+    updatedAt: "2026-06-12T14:35:57Z",
+    updatedLabel: "12 de jun. de 2026",
     createdAt: "2025-07-11T01:19:41Z",
-    url: "https://github.com/EduardoLCavalcante/loja-sorvetes",
+    url: "https://github.com/EduardoLCavalcante/dlicesorvetes",
     homepage: "https://www.dlicesorvetes.site/",
     source: "fallback",
   },
   {
-    id: 2,
-    name: "fitness-viva-landing-21",
-    description: "Landing page de conversão para a Mais Vida Academia, com seções de planos, diferenciais e formulário de contato.",
+    id: 947692766,
+    name: "MaisVidaAcademia-LP",
+    description:
+      "Landing page em React, Vite, TypeScript e Tailwind para academia, com planos, agenda, conteúdo comercial e contato. Prova foco em conversão local.",
     language: "TypeScript",
     stars: 0,
-    updatedAt: "2026-04-26T18:19:54Z",
-    updatedLabel: "26 de abr. de 2026",
+    updatedAt: "2026-06-12T14:35:30Z",
+    updatedLabel: "12 de jun. de 2026",
     createdAt: "2025-03-13T05:09:03Z",
-    url: "https://github.com/EduardoLCavalcante/fitness-viva-landing-21",
+    url: "https://github.com/EduardoLCavalcante/MaisVidaAcademia-LP",
     homepage: "https://www.maisvidaacademia.com/",
     source: "fallback",
   },
   {
-    id: 3,
+    id: 1186716126,
     name: "web-amo",
-    description: "Aplicação web desenvolvida com React e TypeScript, com foco em usabilidade e responsividade.",
+    description:
+      "Plataforma acadêmica em Next.js 16, React 19 e TypeScript, com cadastro, autenticação e UI responsiva. Prova organização de produto e formulários.",
     language: "TypeScript",
     stars: 0,
     updatedAt: "2026-04-25T13:44:58Z",
@@ -41,9 +58,10 @@ export const projectsFallback: GithubRepo[] = [
     source: "fallback",
   },
   {
-    id: 4,
+    id: 1139925875,
     name: "automatizacao_fies_med",
-    description: "Automação em Python para o processo de financiamento estudantil FIES na área de medicina.",
+    description:
+      "Automação Python com Selenium para coletar dados do FIES Medicina, persistindo CSV e tratando CAPTCHA, timeouts e DOM instável. Prova robustez fora do front-end.",
     language: "Python",
     stars: 0,
     updatedAt: "2026-04-11T23:21:08Z",
@@ -54,9 +72,10 @@ export const projectsFallback: GithubRepo[] = [
     source: "fallback",
   },
   {
-    id: 5,
+    id: 1204353582,
     name: "arenasync",
-    description: "Plataforma de agendamento e sincronização de horários para arenas esportivas.",
+    description:
+      "SaaS de agendamento para arenas esportivas em React, Vite, Tailwind, Zustand e Recharts, com perfis de acesso, dashboards e booking.",
     language: "TypeScript",
     stars: 0,
     updatedAt: "2026-04-08T17:26:42Z",
@@ -67,9 +86,10 @@ export const projectsFallback: GithubRepo[] = [
     source: "fallback",
   },
   {
-    id: 6,
+    id: 958753394,
     name: "portifolio_Jose",
-    description: "Portfólio profissional em dark mode com hero editorial e experiência imersiva de marca.",
+    description:
+      "Portfólio em React, TypeScript e Tailwind com dark mode e composição editorial. Prova direção visual aplicada a presença profissional.",
     language: "TypeScript",
     stars: 0,
     updatedAt: "2026-02-19T01:23:05Z",
@@ -80,9 +100,10 @@ export const projectsFallback: GithubRepo[] = [
     source: "fallback",
   },
   {
-    id: 7,
+    id: 1141284554,
     name: "poker-buddy",
-    description: "Aplicativo web para auxiliar jogadores de poker com estatísticas, probabilidades e controle de mesa.",
+    description:
+      "Aplicativo de poker em React, TypeScript e Vite, com clock de torneio, cash game, histórico e configurações. Prova produto interativo com estado local.",
     language: "TypeScript",
     stars: 0,
     updatedAt: "2026-01-24T17:42:39Z",
@@ -93,9 +114,10 @@ export const projectsFallback: GithubRepo[] = [
     source: "fallback",
   },
   {
-    id: 8,
+    id: 1138414979,
     name: "dbscan_manual",
-    description: "Implementação manual do algoritmo de clusterização DBSCAN em Python, sem uso de bibliotecas externas.",
+    description:
+      "Implementação manual do DBSCAN em Python, com classificação de pontos, datasets Two Moons, Two Circles e Iris, além de visualizações. Prova base algorítmica.",
     language: "Python",
     stars: 0,
     updatedAt: "2026-01-20T17:20:53Z",
@@ -106,12 +128,13 @@ export const projectsFallback: GithubRepo[] = [
     source: "fallback",
   },
   {
-    id: 9,
+    id: 1120603809,
     name: "mundo_dos_blocos_IA",
-    description: "Ambiente simulado do Mundo dos Blocos com agentes de IA explorando planejamento e aprendizado.",
+    description:
+      "Planejador automático em Python para Mundo dos Blocos com STRIPS, BFS, IDS, A* e métricas de execução. Prova base de IA clássica.",
     language: "Python",
     stars: 0,
-    updatedAt: "2026-01-16T14:01:08Z",
+    updatedAt: "2026-01-16T14:01:03Z",
     updatedLabel: "16 de jan. de 2026",
     createdAt: "2025-12-21T15:10:49Z",
     url: "https://github.com/EduardoLCavalcante/mundo_dos_blocos_IA",
@@ -119,9 +142,10 @@ export const projectsFallback: GithubRepo[] = [
     source: "fallback",
   },
   {
-    id: 10,
+    id: 854187452,
     name: "landing_AprovaUFC",
-    description: "Landing page para o cursinho pré-vestibular AprovaUFC, com foco em captação e conversão de novos alunos.",
+    description:
+      "Landing page em React, TypeScript, Tailwind e Motion para o Aprova UFC, com apresentação institucional e CTA para Instagram.",
     language: "TypeScript",
     stars: 0,
     updatedAt: "2025-03-24T02:38:52Z",

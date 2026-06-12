@@ -13,9 +13,9 @@ import { Preloader } from "@/components/ui/Preloader";
 import { siteConfig } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} | Desenvolvedor Front-end`,
+  title: `${siteConfig.name} | Creative Front-end Engineer`,
   description:
-    "Portfólio front-end de Eduardo Cavalcante, com foco em interfaces responsivas, superfícies de produto e experiências digitais com acabamento de nível de produto.",
+    "Portfólio de Eduardo Cavalcante, front-end focado em React, Next.js, TypeScript, interfaces responsivas, motion com propósito e acabamento de produto.",
   metadataBase: new URL(`https://${siteConfig.domain}`),
   keywords: [
     "desenvolvedor front-end",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   alternates: { canonical: `https://${siteConfig.domain}` },
   openGraph: {
-    title: `${siteConfig.name} | Desenvolvedor Front-end`,
+    title: `${siteConfig.name} | Creative Front-end Engineer`,
     description:
-      "Sistemas de interface modernos, arquitetura front-end contemporânea e experiências de produto com direção visual refinada.",
+      "Portfólio de Eduardo Cavalcante, front-end focado em React, Next.js, TypeScript, interfaces responsivas, motion com propósito e acabamento de produto.",
     url: `https://${siteConfig.domain}`,
     siteName: siteConfig.name,
     type: "website",
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | Desenvolvedor Front-end`,
+    title: `${siteConfig.name} | Creative Front-end Engineer`,
     description:
-      "Interfaces responsivas construídas com React, Next.js, TypeScript, motion e acabamento de produto.",
+      "Portfólio de Eduardo Cavalcante, front-end focado em React, Next.js, TypeScript, interfaces responsivas, motion com propósito e acabamento de produto.",
   },
 };
 

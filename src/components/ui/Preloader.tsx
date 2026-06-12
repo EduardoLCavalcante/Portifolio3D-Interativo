@@ -126,7 +126,7 @@ export function Preloader() {
       className={cn("preloader", phase === "exiting" && "preloader--exit")}
       role="status"
       aria-live="polite"
-      aria-label="Carregando experiência"
+      aria-label="Carregando portfólio"
     >
       <div className="preloader__shell">
         <div className="preloader__mark" aria-hidden="true">
@@ -156,7 +156,7 @@ export function Preloader() {
         </div>
 
         <div className="preloader__meta">
-          <span className="preloader__label">initializing interface</span>
+          <span className="preloader__label">preparando interface</span>
           <span className="preloader__value">{progressLabel}</span>
         </div>
       </div>

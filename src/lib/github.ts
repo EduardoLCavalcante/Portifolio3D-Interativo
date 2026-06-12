@@ -38,7 +38,32 @@ export type GithubProjectsResult = {
 
 const stackLanguages = new Set(["TypeScript", "JavaScript", "CSS", "HTML"]);
 
-const formatter = new Intl.DateTimeFormat("en", {
+const projectDescriptions: Record<string, string> = {
+  "Portifolio3D-Interativo":
+    "Portfólio 3D em Next.js, TypeScript, Three.js, GSAP e Motion. Prova domínio de UI premium, scroll narrativo, WebGL e responsividade.",
+  dlicesorvetes:
+    "E-commerce responsivo para marca de sorvetes em Next.js, com catálogo, carrinho, checkout e Supabase. Prova execução comercial com fluxo real.",
+  "MaisVidaAcademia-LP":
+    "Landing page em React, Vite, TypeScript e Tailwind para academia, com planos, agenda, conteúdo comercial e contato. Prova foco em conversão local.",
+  "web-amo":
+    "Plataforma acadêmica em Next.js 16, React 19 e TypeScript, com cadastro, autenticação e UI responsiva. Prova organização de produto e formulários.",
+  automatizacao_fies_med:
+    "Automação Python com Selenium para coletar dados do FIES Medicina, persistindo CSV e tratando CAPTCHA, timeouts e DOM instável. Prova robustez fora do front-end.",
+  arenasync:
+    "SaaS de agendamento para arenas esportivas em React, Vite, Tailwind, Zustand e Recharts, com perfis de acesso, dashboards e booking.",
+  portifolio_Jose:
+    "Portfólio em React, TypeScript e Tailwind com dark mode e composição editorial. Prova direção visual aplicada a presença profissional.",
+  "poker-buddy":
+    "Aplicativo de poker em React, TypeScript e Vite, com clock de torneio, cash game, histórico e configurações. Prova produto interativo com estado local.",
+  dbscan_manual:
+    "Implementação manual do DBSCAN em Python, com classificação de pontos, datasets Two Moons, Two Circles e Iris, além de visualizações. Prova base algorítmica.",
+  mundo_dos_blocos_IA:
+    "Planejador automático em Python para Mundo dos Blocos com STRIPS, BFS, IDS, A* e métricas de execução. Prova base de IA clássica.",
+  landing_AprovaUFC:
+    "Landing page em React, TypeScript, Tailwind e Motion para o Aprova UFC, com apresentação institucional e CTA para Instagram.",
+};
+
+const formatter = new Intl.DateTimeFormat("pt-BR", {
   month: "short",
   day: "numeric",
   year: "numeric",
@@ -50,10 +75,12 @@ function formatDate(value: string) {
 }
 
 function mapRepo(repo: GithubApiRepo): GithubRepo {
+  const publicDescription = repo.description?.trim() || projectDescriptions[repo.name] || null;
+
   return {
     id: repo.id,
     name: repo.name,
-    description: repo.description,
+    description: publicDescription,
     language: repo.language,
     stars: repo.stargazers_count,
     updatedAt: repo.updated_at,
@@ -109,7 +136,7 @@ export async function getPublicGithubRepos(username: string): Promise<GithubProj
     });
 
     if (!response.ok) {
-      return fallbackResult(`GitHub API responded with ${response.status}`);
+      return fallbackResult(`GitHub respondeu com status ${response.status}`);
     }
 
     const repos = (await response.json()) as GithubApiRepo[];
@@ -119,7 +146,7 @@ export async function getPublicGithubRepos(username: string): Promise<GithubProj
       .map(mapRepo);
 
     if (projectRepos.length === 0) {
-      return fallbackResult("GitHub API returned no project repositories");
+      return fallbackResult("GitHub não retornou repositórios de projeto");
     }
 
     return {
@@ -127,6 +154,6 @@ export async function getPublicGithubRepos(username: string): Promise<GithubProj
       source: "github",
     };
   } catch (error) {
-    return fallbackResult(error instanceof Error ? error.message : "GitHub API request failed");
+    return fallbackResult(error instanceof Error ? error.message : "Falha na consulta ao GitHub");
   }
 }

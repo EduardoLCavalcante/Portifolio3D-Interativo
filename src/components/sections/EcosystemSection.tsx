@@ -7,16 +7,17 @@ export function EcosystemSection() {
       <div className="container-shell grid gap-12 xl:grid-cols-[0.42fr_0.58fr] xl:items-start">
         <div className="xl:sticky xl:top-28">
           <p className="font-mono text-sm text-cadmium" data-reveal="soft">
-            02 / sistemas
+            Stack
           </p>
           <h2
             className="mt-7 text-balance text-5xl font-semibold leading-[0.95] text-frost md:text-7xl"
             data-reveal="mask"
           >
-            A stack é tratada como estrutura, não decoração.
+            Ferramentas que transformam requisitos em interfaces reais.
           </h2>
           <p className="mt-8 max-w-md text-lg leading-8 text-ash" data-reveal="soft">
-            Ferramentas num mapa construtivo: cada camada tem função, pressão e limite.
+            React, Next.js, TypeScript, Tailwind e Supabase entram como camadas de produto:
+            estrutura, estado, dados, UI e deploy.
           </p>
         </div>
 
@@ -31,7 +32,7 @@ export function EcosystemSection() {
 
           <div className="absolute left-[31%] top-[43%] hidden -translate-x-1/2 -translate-y-1/2 xl:block">
             <p className="max-w-[10rem] text-4xl font-semibold leading-[0.9] text-frost">
-              Superfície de interface
+              Front-end de produto
             </p>
             <span className="mt-5 block h-px w-36 bg-cadmium" />
           </div>

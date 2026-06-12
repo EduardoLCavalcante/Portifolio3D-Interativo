@@ -5,12 +5,12 @@ import { prefersReducedMotion } from "@/lib/client-capabilities";
 import { cn } from "@/lib/cn";
 
 const sections = [
-  { id: "surface", label: "Superfície" },
-  { id: "behavior", label: "Comportamento" },
-  { id: "systems", label: "Sistemas" },
+  { id: "surface", label: "Início" },
+  { id: "behavior", label: "Método" },
+  { id: "systems", label: "Stack" },
   { id: "evidence", label: "Projetos" },
-  { id: "signature", label: "Assinatura" },
-  { id: "about", label: "Sobre" },
+  { id: "signature", label: "Entrega" },
+  { id: "about", label: "Critério" },
   { id: "contact", label: "Contato" },
 ];
 
@@ -125,7 +125,7 @@ export function SectionAwareness() {
   }, []);
 
   return (
-    <aside className="section-indicator hidden lg:flex" aria-label="Current section">
+    <aside className="section-indicator hidden lg:flex" aria-label="Seção atual">
       {sections.map((section, index) => {
         const isActive = activeSection === section.id;
 

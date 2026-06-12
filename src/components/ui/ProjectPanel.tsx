@@ -21,7 +21,8 @@ export function ProjectPanel({ project, featured }: ProjectPanelProps) {
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 170, damping: 24, mass: 0.45 });
   const springY = useSpring(y, { stiffness: 170, damping: 24, mass: 0.45 });
-  const description = project.description?.trim() || "Projeto em desenvolvimento.";
+  const description =
+    project.description?.trim() || "Repositório público sem descrição. Ver GitHub para contexto técnico.";
 
   const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
     if (reducedMotion || event.pointerType !== "mouse" || !ref.current) return;
@@ -94,14 +95,14 @@ export function ProjectPanel({ project, featured }: ProjectPanelProps) {
           </h3>
           <p className="mt-5 max-w-2xl text-base leading-7 text-ash">{description}</p>
           <p className="mt-5 max-w-2xl text-sm leading-6 text-ash/70">
-            Atualizado em {project.updatedLabel}{project.stars > 0 ? ` · ${project.stars} estrela${project.stars !== 1 ? "s" : ""}` : ""}
+            Atualizado em {project.updatedLabel}{project.stars > 0 ? ` - ${project.stars} estrela${project.stars !== 1 ? "s" : ""}` : ""}
           </p>
 
           <div className="mt-8 flex flex-wrap gap-2">
             {[
               project.language ?? "Código",
               ...(project.stars > 0 ? [`${project.stars} estrela${project.stars !== 1 ? "s" : ""}`] : []),
-              project.homepage ? "Demo ao vivo" : "Repositório",
+              project.homepage ? "Demo" : "Repositório",
             ].map((tech) => (
               <span
                 className="border border-white/[0.1] px-3 py-1 text-xs text-ash/80"

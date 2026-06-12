@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer className="border-t border-white/[0.08] py-8">
       <div className="container-shell flex flex-col gap-4 text-sm text-ash/65 md:flex-row md:items-center md:justify-between">
-        <p>{siteConfig.name} · Desenvolvedor front-end</p>
+        <p>{siteConfig.name} / Creative Front-end Engineer</p>
         <div className="flex flex-wrap gap-5">
           <a
             className="link-micro"
@@ -23,7 +23,7 @@ export function Footer() {
             LinkedIn
           </a>
           <a className="link-micro" href={`mailto:${siteConfig.email}`}>
-            Email
+            E-mail
           </a>
         </div>
       </div>

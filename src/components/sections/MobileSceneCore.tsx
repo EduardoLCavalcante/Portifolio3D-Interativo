@@ -42,7 +42,7 @@ export function MobileSceneCore({
       {/* Horizontal accent */}
       <div className="absolute left-0 right-0 top-[46%] h-px bg-white/[0.07]" />
 
-      {/* Slab — all rotation/scale driven by motion values */}
+      {/* Slab - all rotation/scale driven by motion values */}
       <div className="flex h-full items-center justify-center">
         <motion.div
           className="mobile-core-slab"

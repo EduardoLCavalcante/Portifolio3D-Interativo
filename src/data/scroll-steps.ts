@@ -1,18 +1,18 @@
 export const scrollSteps = [
   {
-    title: "Restrição vira estrutura.",
-    copy: "A superfície recebe grid, ritmo e hierarquia antes de receber decoração.",
+    title: "Requisitos viram arquitetura de UI.",
+    copy: "Organizo fluxo, conteúdo e estados antes de decidir qualquer efeito visual.",
   },
   {
-    title: "Estado vira material.",
-    copy: "Carregamento, vazio, ativo e responsivo são tratados como parte do sistema de design.",
+    title: "Layout nasce responsivo.",
+    copy: "Grid, hierarquia e breakpoints entram cedo para a interface funcionar em desktop e mobile.",
   },
   {
-    title: "Movimento vira evidência.",
-    copy: "O movimento revela arquitetura, adapta densidade e dá feedback no lugar de preencher silêncio.",
+    title: "Motion explica comportamento.",
+    copy: "Animações guiam foco, feedback e transição de estado. Nada entra só para decorar.",
   },
   {
-    title: "Produto vira interface.",
-    copy: "A camada final conecta clareza, velocidade e interação numa superfície que pode ser entregue.",
+    title: "Interface fecha como produto.",
+    copy: "Integro stack, dados e detalhes de uso para entregar algo navegável, claro e pronto para evoluir.",
   },
 ];

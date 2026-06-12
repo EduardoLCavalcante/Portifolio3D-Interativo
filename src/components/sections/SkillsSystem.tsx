@@ -7,13 +7,13 @@ export function SkillsSystem() {
         <div className="grid gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
           <div className="lg:sticky lg:top-28">
             <p className="font-mono text-sm text-cadmium" data-reveal="soft">
-              04 / assinatura
+              Entrega
             </p>
             <h2
               className="mt-7 text-balance text-5xl font-semibold leading-[0.95] text-frost md:text-7xl"
               data-reveal="mask"
             >
-              Design, código e visão de produto compartilham a mesma superfície.
+              Interfaces com visual premium, lógica de produto e código pronto para evoluir.
             </h2>
           </div>
 

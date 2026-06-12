@@ -11,12 +11,12 @@ import {
 import { MobileSceneCore } from "@/components/sections/MobileSceneCore";
 import { scrollSteps } from "@/data/scroll-steps";
 
-// All narrative states: intro + the 4 scroll steps
+// Narrative states: intro + the 4 scroll steps
 const states = [
   {
     counter: "00",
-    title: "Lógica de interface sem sequestrar o scroll.",
-    copy: "Cada bloco de texto transforma o estado visual do sistema.",
+    title: "Processo claro, sem perder a experiência.",
+    copy: "Do requisito ao protótipo navegável, cada etapa melhora clareza, responsividade e intenção.",
   },
   ...scrollSteps.map((s, i) => ({
     counter: String(i + 1).padStart(2, "0"),
@@ -42,7 +42,7 @@ export function MobileScrollNarrative() {
     mass: 0.4,
   });
 
-  // ── Nucleus continuous transforms ────────────────────────
+  // Nucleus continuous transforms
   const rotateY = useTransform(progress, [0, 0.25, 0.5, 0.75, 1], [0, -6, -3, 2, 0]);
   const rotateX = useTransform(progress, [0, 0.25, 0.5, 0.75, 1], [2, 4, 6, 2, 0]);
   const coreScale = useTransform(progress, [0, 0.5, 0.75, 1], [1, 1.06, 1.04, 1]);
@@ -54,7 +54,7 @@ export function MobileScrollNarrative() {
   const orbitOpacity = useTransform(progress, [0, 0.45, 0.7, 1], [0.15, 0.58, 0.48, 0.22]);
   const gridOpacity = useTransform(progress, [0, 0.25, 0.5, 1], [0.18, 0.28, 0.42, 0.22]);
 
-  // ── Per-state cross-fade opacity & y ─────────────────────
+  // Per-state cross-fade opacity and y
   // Each state occupies 1/N of progress [0..1].
   // Fade in during first half of its window, hold, fade out during last half.
   const stateOpacities = states.map((_, i) => {
@@ -91,14 +91,14 @@ export function MobileScrollNarrative() {
     );
   });
 
-  // ── Reduced-motion fallback: static stacked layout ───────
+  // Reduced-motion fallback: static stacked layout
   if (reducedMotion) {
     return (
       <section className="relative border-y border-white/[0.08] bg-[#090909] lg:hidden">
         <div className="container-shell py-16">
-          <p className="font-mono text-sm text-cadmium">01 / comportamento</p>
+          <p className="font-mono text-sm text-cadmium">Método</p>
           <h2 className="mt-7 text-balance text-4xl font-semibold leading-[0.98] text-frost">
-            Lógica de interface sem sequestrar o scroll.
+            Processo claro, sem perder a experiência.
           </h2>
           <div className="mt-10 divide-y divide-white/[0.08]">
             {scrollSteps.map((step, i) => (
@@ -131,10 +131,10 @@ export function MobileScrollNarrative() {
       // Height drives the scroll distance: N states x 82svh each
       style={{ height: `${N * 82}svh` }}
     >
-      {/* ── Sticky viewport ─────────────────────────── */}
+        {/* Sticky viewport */}
       <div className="sticky top-0 h-[100svh] overflow-hidden">
 
-        {/* 3D nucleus — full-screen */}
+        {/* 3D nucleus - full-screen */}
         <div className="webgl-fallback-only absolute inset-0 z-0" aria-hidden="true">
           <MobileSceneCore
             rotateY={rotateY}
@@ -146,7 +146,7 @@ export function MobileScrollNarrative() {
           />
         </div>
 
-        {/* Scrim — only covers lower portion; top half stays pure 3D */}
+        {/* Scrim - only covers lower portion; top half stays pure 3D */}
         <div
           className="absolute inset-x-0 bottom-0 z-10 h-[62%] pointer-events-none"
           aria-hidden="true"
@@ -156,9 +156,9 @@ export function MobileScrollNarrative() {
           }}
         />
 
-        {/* Section label — top */}
+        {/* Section label - top */}
         <div className="absolute top-[5.5rem] left-0 right-0 z-20 container-shell">
-          <p className="font-mono text-sm text-cadmium/80">01 / comportamento</p>
+          <p className="font-mono text-sm text-cadmium/80">Método</p>
         </div>
 
         {/* Progress dots */}

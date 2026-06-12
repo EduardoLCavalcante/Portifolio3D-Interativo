@@ -1078,7 +1078,7 @@ html[data-webgl="ready"] .webgl-fallback-only {
   }
 }
 
-/* Lower-amplitude float for mobile — GPU-only, no layout cost */
+/* Lower-amplitude float for mobile - GPU-only, no layout cost */
 @keyframes plane-breathe-mobile {
   0%,
   100% {

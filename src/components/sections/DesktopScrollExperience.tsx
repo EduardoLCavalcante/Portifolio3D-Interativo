@@ -95,7 +95,7 @@ export function DesktopScrollExperience() {
       <div className="container-shell grid min-h-[100svh] items-center gap-12 py-24 lg:grid-cols-[0.82fr_1.18fr]">
         <div className="relative z-10">
           <p className="font-mono text-sm text-cadmium" data-reveal="soft">
-            01 / comportamento
+            Método
           </p>
           <div className="relative mt-7 min-h-[18rem] max-w-xl motion-reduce:min-h-0">
             {scrollSteps.map((step, index) => (
