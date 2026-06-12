@@ -134,12 +134,13 @@ export function SectionAwareness() {
             className={cn("section-indicator__item", isActive && "is-active")}
             href={`#${section.id}`}
             key={section.id}
+            aria-label={section.label}
             aria-current={isActive ? "true" : undefined}
           >
-            <span className="section-indicator__index">
+            <span className="section-indicator__index" aria-hidden="true">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <span className="section-indicator__label">{section.label}</span>
+            <span className="section-indicator__label" aria-hidden="true">{section.label}</span>
           </a>
         );
       })}

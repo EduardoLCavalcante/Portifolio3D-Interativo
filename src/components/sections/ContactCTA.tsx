@@ -6,7 +6,7 @@ export function ContactCTA() {
     <section id="contact" className="section-transition section-y relative isolate overflow-hidden">
       <div className="contact-copy-scrim" aria-hidden="true" />
       <div className="mouse-reactive absolute inset-y-0 left-[18%] -z-10 w-px bg-white/[0.08]" />
-      <div className="mouse-reactive absolute inset-y-0 right-[22%] -z-10 w-px bg-cadmium/40" />
+      <div className="mouse-reactive absolute inset-y-0 right-[22%] -z-10 w-px bg-cadmium/22" />
       <div className="container-shell">
         <div className="border-y border-white/[0.1] py-10 md:py-14">
           <div className="contact-emerge">
@@ -63,7 +63,7 @@ export function ContactCTA() {
                 {siteConfig.domain}
               </a>
               <a className="link-micro hover:text-frost" href={`mailto:${siteConfig.email}`}>
-                {siteConfig.email}
+                {siteConfig.contactEmailDisplay}
               </a>
             </div>
           </div>

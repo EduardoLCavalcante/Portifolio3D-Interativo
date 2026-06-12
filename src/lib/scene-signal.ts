@@ -20,6 +20,8 @@ export type SceneSignal = {
   velocity: number;
   tier: SceneTierName;
   ready: boolean;
+  projectTitle: string | null;
+  projectSeed: number;
 };
 
 export const sceneSections: SceneSectionId[] = [
@@ -43,6 +45,8 @@ export const sceneSignal: SceneSignal = {
   velocity: 0,
   tier: "medium",
   ready: false,
+  projectTitle: null,
+  projectSeed: 0,
 };
 
 export function clamp01(value: number) {

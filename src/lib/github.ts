@@ -1,5 +1,36 @@
 import { projectsFallback } from "@/data/projects-fallback";
 
+const projectDisplayNames: Record<string, string> = {
+  "Portifolio3D-Interativo": "Portfólio 3D Interativo",
+  dlicesorvetes: "D'Lice Sorvetes",
+  "MaisVidaAcademia-LP": "Mais Vida Academia",
+  "web-amo": "Web AMO",
+  automatizacao_fies_med: "Automação FIES",
+  arenasync: "ArenaSync",
+  portifolio_Jose: "Portfólio José",
+  "poker-buddy": "Poker Buddy",
+  dbscan_manual: "DBSCAN Clustering",
+  mundo_dos_blocos_IA: "Mundo dos Blocos IA",
+  landing_AprovaUFC: "Aprova UFC",
+};
+
+const knownAcronyms = new Set(["IA", "UFC", "FIES", "AMO", "LP", "CSS", "HTML", "API", "UI", "UX"]);
+
+export function formatProjectTitle(name: string): string {
+  if (projectDisplayNames[name]) return projectDisplayNames[name];
+
+  return name
+    .replace(/[-_]/g, " ")
+    .split(" ")
+    .filter(Boolean)
+    .map((word) => {
+      const upper = word.toUpperCase();
+      if (knownAcronyms.has(upper)) return upper;
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(" ");
+}
+
 type GithubApiRepo = {
   id: number;
   name: string;

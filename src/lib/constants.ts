@@ -2,7 +2,10 @@ export const siteConfig = {
   name: "Eduardo Cavalcante",
   role: "Creative Front-end Engineer",
   domain: "eduardocavalcante.online",
+  // functional mailto target — update to contactEmailDisplay when the professional domain is forwarding
   email: "eduardocavalcante131@gmail.com",
+  // professional email shown in UI; swap `email` above once the domain is configured
+  contactEmailDisplay: "contato@eduardocavalcante.online",
   githubUsername: "EduardoLCavalcante",
   githubBaseUrl: "https://github.com/EduardoLCavalcante",
   social: {

@@ -42,6 +42,7 @@ export function Phone({ tier }: PhoneProps) {
   const groupRef = useRef<THREE.Group>(null);
   const rimRef = useRef<THREE.Mesh>(null);
   const textureAccumulator = useRef(0);
+  const projectFocus = useRef({ value: 0 });
   const rimMaterial = useMemo(() => createFresnelRimMaterial(), []);
   const textureSize = useMemo(() => getTextureSize(tier), [tier]);
   const phoneUI = useMemo(
@@ -127,12 +128,17 @@ export function Phone({ tier }: PhoneProps) {
     const contactZ = cp * (tier.mobile ? 0.8 : 2.3);
     const contactScale = cp * (tier.mobile ? 0.42 : 0.32);
 
+    easing.damp(projectFocus.current, "value", sceneSignal.projectTitle ? 1 : 0, 0.22, delta);
+
     textureAccumulator.current += delta;
     if (textureAccumulator.current >= 1 / textureFps && (screenMaterial.opacity > 0.03 || cp < 0.98)) {
       phoneUI.draw({
         scroll: sceneSignal.scroll,
         sectionIndex: sceneSignal.sectionIndex,
         time: clock.elapsedTime,
+        projectTitle: sceneSignal.projectTitle,
+        projectSeed: sceneSignal.projectSeed,
+        focus: projectFocus.current.value,
       });
       textureAccumulator.current = 0;
     }
@@ -142,7 +148,7 @@ export function Phone({ tier }: PhoneProps) {
     easing.damp(
       rimMaterial.uniforms.uIntensity,
       "value",
-      0.42 + velocityBoost + sceneSignal.sectionProgress * 0.08 + cp * 0.5,
+      0.42 + velocityBoost + sceneSignal.sectionProgress * 0.08 + cp * 0.5 + projectFocus.current.value * 0.25,
       0.22,
       delta,
     );

@@ -3,16 +3,14 @@
 import { PointerEvent, useRef } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import type { GithubRepo } from "@/lib/github";
+import { formatProjectTitle } from "@/lib/github";
+import { sceneSignal } from "@/lib/scene-signal";
 import { cn } from "@/lib/cn";
 
 type ProjectPanelProps = {
   project: GithubRepo;
   featured?: boolean;
 };
-
-function formatProjectName(name: string) {
-  return name.replace(/[-_]/g, " ");
-}
 
 export function ProjectPanel({ project, featured }: ProjectPanelProps) {
   const ref = useRef<HTMLElement>(null);
@@ -23,6 +21,14 @@ export function ProjectPanel({ project, featured }: ProjectPanelProps) {
   const springY = useSpring(y, { stiffness: 170, damping: 24, mass: 0.45 });
   const description =
     project.description?.trim() || "Repositório público sem descrição. Ver GitHub para contexto técnico.";
+
+  const title = formatProjectTitle(project.name);
+
+  const handlePointerEnter = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse") return;
+    sceneSignal.projectTitle = title;
+    sceneSignal.projectSeed = project.id % 997;
+  };
 
   const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
     if (reducedMotion || event.pointerType !== "mouse" || !ref.current) return;
@@ -41,6 +47,7 @@ export function ProjectPanel({ project, featured }: ProjectPanelProps) {
   const resetMagnet = () => {
     x.set(0);
     y.set(0);
+    if (sceneSignal.projectTitle === title) sceneSignal.projectTitle = null;
   };
 
   return (
@@ -50,6 +57,7 @@ export function ProjectPanel({ project, featured }: ProjectPanelProps) {
         "project-sheen magnetic-panel group relative isolate overflow-hidden border-t border-white/[0.12] py-7 transition duration-500 hover:border-cadmium/60",
         featured && "min-h-[560px] border-y border-white/[0.12] py-8 md:py-10",
       )}
+      onPointerEnter={handlePointerEnter}
       onPointerMove={handlePointerMove}
       onPointerLeave={resetMagnet}
       style={{ x: springX, y: springY }}
@@ -91,7 +99,7 @@ export function ProjectPanel({ project, featured }: ProjectPanelProps) {
               featured ? "text-5xl leading-[0.92] md:text-7xl" : "text-3xl leading-none md:text-4xl",
             )}
           >
-            {formatProjectName(project.name)}
+            {formatProjectTitle(project.name)}
           </h3>
           <p className="mt-5 max-w-2xl text-base leading-7 text-ash">{description}</p>
           <p className="mt-5 max-w-2xl text-sm leading-6 text-ash/70">

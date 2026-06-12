@@ -3,6 +3,8 @@
 import { PointerEvent, useMemo, useState } from "react";
 import { ProjectPanel } from "@/components/ui/ProjectPanel";
 import type { GithubRepo } from "@/lib/github";
+import { formatProjectTitle } from "@/lib/github";
+import { sceneSignal } from "@/lib/scene-signal";
 import { cn } from "@/lib/cn";
 
 type ProjectsShowcaseProps = {
@@ -12,10 +14,6 @@ type ProjectsShowcaseProps = {
 };
 
 const allLanguagesLabel = "Todos";
-
-function formatProjectName(name: string) {
-  return name.replace(/[-_]/g, " ");
-}
 
 function getLanguages(projects: GithubRepo[]) {
   const languages = new Set(
@@ -48,6 +46,7 @@ export function ProjectsShowcase({ projects, source, error }: ProjectsShowcasePr
     <div
       className="projects-stage relative"
       onPointerMove={handlePointerMove}
+      onPointerLeave={() => { sceneSignal.projectTitle = null; }}
     >
       <div className="max-w-4xl">
         <p className="font-mono text-sm text-cadmium" data-reveal="soft">
@@ -125,15 +124,23 @@ export function ProjectsShowcase({ projects, source, error }: ProjectsShowcasePr
                 key={project.id}
                 target="_blank"
                 rel="noreferrer"
+                onPointerEnter={(e) => {
+                  if (e.pointerType !== "mouse") return;
+                  sceneSignal.projectTitle = formatProjectTitle(project.name);
+                  sceneSignal.projectSeed = project.id % 997;
+                }}
+                onPointerLeave={() => {
+                  if (sceneSignal.projectTitle === formatProjectTitle(project.name)) sceneSignal.projectTitle = null;
+                }}
               >
                 <span className="font-mono text-xs text-cadmium">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <span className="project-row__title text-xl font-semibold leading-none text-frost">
-                  {formatProjectName(project.name)}
+                  {formatProjectTitle(project.name)}
                 </span>
-                <span className="text-sm text-ash/70">{project.language ?? "Código"}</span>
-                <span className="text-sm text-ash/70">{project.updatedLabel}</span>
+                <span className="text-sm text-ash/80">{project.language ?? "Código"}</span>
+                <span className="text-sm text-ash/80">{project.updatedLabel}</span>
               </a>
             ))}
           </div>

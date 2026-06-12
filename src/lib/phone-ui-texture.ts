@@ -4,6 +4,9 @@ export type PhoneUIState = {
   scroll: number;
   sectionIndex: number;
   time: number;
+  projectTitle: string | null;
+  projectSeed: number;
+  focus: number;
 };
 
 export type PhoneUITexture = {
@@ -94,6 +97,15 @@ function drawBars(
   }
 }
 
+function truncateText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): string {
+  if (ctx.measureText(text).width <= maxWidth) return text;
+  let result = text;
+  while (result.length > 1 && ctx.measureText(`${result}…`).width > maxWidth) {
+    result = result.slice(0, -1);
+  }
+  return `${result}…`;
+}
+
 export function createPhoneUITexture(width: number, height: number): PhoneUITexture {
   const canvas = document.createElement("canvas");
   canvas.width = width;
@@ -112,7 +124,7 @@ export function createPhoneUITexture(width: number, height: number): PhoneUIText
   texture.magFilter = THREE.LinearFilter;
   texture.generateMipmaps = false;
 
-  const draw = ({ scroll, sectionIndex, time }: PhoneUIState) => {
+  const draw = ({ scroll, sectionIndex, time, projectTitle, projectSeed, focus }: PhoneUIState) => {
     const w = canvas.width;
     const h = canvas.height;
     const pad = Math.round(w * 0.065);
@@ -155,13 +167,53 @@ export function createPhoneUITexture(width: number, height: number): PhoneUIText
 
     const navTop = h * 0.085;
     fillRound(context, pad, navTop, w - pad * 2, h * 0.075, 14, "rgba(255,255,255,0.035)");
-    fillRound(context, pad * 1.45, navTop + h * 0.024, w * 0.34, 6, 3, "rgba(196,203,210,0.52)");
-    fillRound(context, pad * 1.45, navTop + h * 0.048, w * (0.18 + progress * 0.12), 3, 1.5, palette.cadmium);
-    fillRound(context, w - pad * 2.7, navTop + h * 0.022, pad * 1.1, pad * 1.1, pad * 0.55, "rgba(255,59,48,0.18)");
+
+    // Nav pill fades out as project focus rises; project title label fades in
+    fillRound(
+      context,
+      pad * 1.45,
+      navTop + h * 0.024,
+      w * 0.34,
+      6,
+      3,
+      `rgba(196,203,210,${(0.52 * (1 - focus)).toFixed(3)})`,
+    );
+    if (focus > 0.02 && projectTitle) {
+      context.save();
+      context.globalAlpha = focus;
+      const fontSize = Math.round(w * 0.048);
+      context.font = `600 ${fontSize}px "Satoshi", "Inter", system-ui, sans-serif`;
+      context.fillStyle = palette.frost;
+      context.textBaseline = "middle";
+      const labelMaxWidth = w - pad * 4.5;
+      const label = truncateText(context, projectTitle, labelMaxWidth);
+      context.fillText(label, pad * 1.45, navTop + h * 0.024 + 3);
+      context.restore();
+    }
+
+    // Nav underline grows slightly on focus; dot brightens
+    fillRound(
+      context,
+      pad * 1.45,
+      navTop + h * 0.048,
+      w * (0.18 + progress * 0.12) * (1 + focus * 0.45),
+      3,
+      1.5,
+      palette.cadmium,
+    );
+    fillRound(
+      context,
+      w - pad * 2.7,
+      navTop + h * 0.022,
+      pad * 1.1,
+      pad * 1.1,
+      pad * 0.55,
+      `rgba(255,59,48,${(0.18 + focus * 0.24).toFixed(3)})`,
+    );
 
     const heroY = h * 0.205;
     const heroGradient = context.createLinearGradient(pad, heroY, w - pad, heroY + h * 0.23);
-    heroGradient.addColorStop(0, "rgba(255,59,48,0.2)");
+    heroGradient.addColorStop(0, `rgba(255,59,48,${(0.2 + focus * 0.22).toFixed(3)})`);
     heroGradient.addColorStop(0.5, "rgba(196,203,210,0.08)");
     heroGradient.addColorStop(1, "rgba(255,255,255,0.02)");
     fillRound(context, pad, heroY, w - pad * 2, h * 0.24, 20, heroGradient);
@@ -175,17 +227,39 @@ export function createPhoneUITexture(width: number, height: number): PhoneUIText
     const cardWidth = columns === 2 ? (w - pad * 2 - gap) / 2 : w - pad * 2;
     const cardHeight = columns === 2 ? h * 0.13 : h * 0.102;
 
+    // Active card index shifts per project seed when focus is established
+    const activeBase = (sectionIndex + Math.floor(progress * 3)) % 6;
+    const activeSeed = (activeBase + (projectSeed % 6) + 6) % 6;
+    const cardCadmiumStroke = Math.min(0.68, 0.36 * (1 + focus * 0.9));
+    const cardCadmiumFill = Math.min(1, 0.7 * (1 + focus * 0.55));
+
     for (let index = 0; index < 6; index += 1) {
       const column = columns === 2 ? index % 2 : 0;
       const row = columns === 2 ? Math.floor(index / 2) : index;
       const x = pad + column * (cardWidth + gap);
       const y = contentY + row * (cardHeight + gap);
-      const active = index === (sectionIndex + Math.floor(progress * 3)) % 6;
+      const active = index === (focus > 0.5 ? activeSeed : activeBase);
       const alpha = active ? 0.09 + pulse * 0.06 : 0.045;
 
       fillRound(context, x, y, cardWidth, cardHeight, 16, `rgba(196,203,210,${alpha})`);
-      strokeRound(context, x, y, cardWidth, cardHeight, 16, active ? "rgba(255,59,48,0.36)" : "rgba(255,255,255,0.075)");
-      fillRound(context, x + gap, y + gap, cardWidth * 0.38, 7, 3.5, active ? "rgba(255,59,48,0.7)" : "rgba(196,203,210,0.34)");
+      strokeRound(
+        context,
+        x,
+        y,
+        cardWidth,
+        cardHeight,
+        16,
+        active ? `rgba(255,59,48,${cardCadmiumStroke.toFixed(3)})` : "rgba(255,255,255,0.075)",
+      );
+      fillRound(
+        context,
+        x + gap,
+        y + gap,
+        cardWidth * 0.38,
+        7,
+        3.5,
+        active ? `rgba(255,59,48,${cardCadmiumFill.toFixed(3)})` : "rgba(196,203,210,0.34)",
+      );
       fillRound(context, x + gap, y + gap + 22, cardWidth * 0.66, 5, 2.5, "rgba(196,203,210,0.22)");
       fillRound(context, x + gap, y + gap + 40, cardWidth * (0.44 + (index % 3) * 0.1), 5, 2.5, "rgba(196,203,210,0.16)");
     }
@@ -210,7 +284,7 @@ export function createPhoneUITexture(width: number, height: number): PhoneUIText
     texture.needsUpdate = true;
   };
 
-  draw({ scroll: 0, sectionIndex: 0, time: 0 });
+  draw({ scroll: 0, sectionIndex: 0, time: 0, projectTitle: null, projectSeed: 0, focus: 0 });
 
   return {
     texture,
